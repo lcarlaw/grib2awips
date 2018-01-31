@@ -126,6 +126,8 @@ Add additional <vbSource.../> lines for each additional model/processID you have
 
 7. Once you're happy with the results, copy the file to SITE so everyone has access. 
 
+An added bonus of making data available in the Volume Browser is that users will also be able to display sounding data in NSHARP from the GribModel output. 
+
 ### Clearing the model data inventory
 
 As you import newer model runs, AWIPS will automatically update the available model inventory, eventually overwriting older model runs. Should you need to start over and clear the inventory out, or see older model data, follow these steps. This will require AWIPS user privileges. 

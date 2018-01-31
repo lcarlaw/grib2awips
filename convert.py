@@ -75,7 +75,7 @@ if results.model_name not in ['rap', 'ruc2', 'nam', 'gfs']:
 
 # Control the processid here
 results.process_id = int(results.process_id)
-if results.process_id < 240:
+if results.process_id < 240 or results.process_id > 255:
     print 'Choose a higher processID. Could interfere with real AWIPS data...'
     sys.exit()
 
