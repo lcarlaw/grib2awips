@@ -63,7 +63,7 @@ LDAD-GRIB-nam-2018050200.grb2
 
 These files can now be loaded into AWIPS.
 
-### Loading data into AWIPS2
+### Transferring data into AWIPS2
 
 1. Once these files are transferred onto the AWIPS system, open up a terminal window and type:
 ```
@@ -76,6 +76,31 @@ A standard WARNING message will appear.
 ```
 mv /tmp/LDAD-GRIB-nam* /awips2/edex/data/manual
 ```
+
+3. Within a few seconds, this file should be swept up out of manual ingest and will no longer appear in **/awips2/edex/data/manual.** If you'd like to check the status of the decoding, you can type:
+
+```
+grep LDAD-GRIB-nam* /awips2/edex/logs/edex-ingestGrib-YYYYMMDD.log
+```
+where YYYYMMDD correspond to the current Year, Month, and Day. Each line of text will correspond to a particular record from the GRIB2 file being decoded into the **/data_store** directory. 
+
+4. Type:
+```
+ssh dx2
+cd /awips2/edex/data/hdf5/grid
+ls -ltr
+```
+
+In this example, we should see a new directory called **GribModel:7:0:250.** This will contain new HDF5 files, which the AWIPS2 system will use to display data in CAVE. 
+
+### Displaying data in CAVE
+
+1. Open up a CAVE perspective and navigate to **CAVE > Data Browsers > Product Browsers** to reveal the Produce Browser Window. 
+
+2. Scroll down and look for the **GribModel:7:0:250** entry. Expand the entry by clicking the triangle on the left. Various fields can be displayed by nagivating through various levels and parameters, which won't be discussed here. 
+
+### Making data available through the Volume Browser
+
 
 
 
