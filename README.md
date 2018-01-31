@@ -101,6 +101,31 @@ In this example, we should see a new directory called **GribModel:7:0:250.** Thi
 
 ### Making data available through the Volume Browser
 
+Since individually selecting fields through the Product Browser is difficult, and certain routine fields used by forecasters are computed "on-the-fly" in AWIPS, making the data viewable through the Volume Browser is helpful. 
+
+1. In the Localization window (click the symbol off to the right of the Warngen button with a little plus in the top right and click "Localization."
+
+2. Navigate to **D2D > Volume Browser > VbSources > Local**
+
+3. Right click on **SITE (WFO)**, and select ***Copy To > User (username)***. We'll edit this file first to make sure it works, and then copy over to SITE later. 
+
+4. Double click the new file and display the source code (lower left tab next to "Design"). 
+
+5. Insert the following lines:
+
+```
+<?xml version=’1.0’ encoding=’UTF-8’?>
+<vbSourceList>
+<vbSource category=”Local” key=”GribModel:7:0:250” />
+<vbSourceList>
+```
+
+Add additional <vbSource.../> lines for each additional model/processID you have. 
+
+6. Save and restart your CAVE. A **GribModel:7:0:255** selection should be available in the Volume Browser under the Local Sources dropdown. 
+
+7. Once you're happy with the results, copy the file to SITE so everyone has access. 
+
 
 
 
