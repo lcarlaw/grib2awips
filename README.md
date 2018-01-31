@@ -65,5 +65,17 @@ These files can now be loaded into AWIPS.
 
 ### Loading data into AWIPS2
 
+1. Once these files are transferred onto the AWIPS system, open up a terminal window and type:
+```
+ssh dx3
+```
+A standard WARNING message will appear. 
+
+2. Move or copy your files in **/awips2/edex/data/manual.** For example, if your files are located in **/tmp**, you can type:
+
+```
+mv /tmp/LDAD-GRIB-nam* /awips2/edex/data/manual
+```
+
 
 
