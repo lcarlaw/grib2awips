@@ -30,11 +30,8 @@ ls -ltr
 results in this output:
 
 ```
-nam_218_2011022200.g2.tar
-nam_218_2011022300.g2.tar
-nam_218_2011022400.g2.tar
-nam_218_2011022500.g2.tar
-nam_218_2011022600.g2.tar
+nam_218_2017050100.g2.tar
+nam_218_2017050200.g2.tar
 ```
 
 This is GRIB2 data (the **g2** extension before .tar), so we can decode these files. Note that GRIB1 files are not supported at this time. Don't rename any files as the converting script looks for a specific naming convention. 
@@ -44,5 +41,29 @@ Archived NAM files actually contain hourly forecast output through 36 hours, whi
 ```
 python reduce_nam.py /Volumes/External2TB/data
 ```
+
+the extraneous data will be removed from the data files. 
+
+### Conversion Process
+
+Running the converion script is fairly straightforward, but requires a few command-line inputs:
+
+```
+python convert.py -m nam -pid 250 -path /Volumes/External2TB/data -shifttime 365 -d -minlat 27 -maxlat 40 -minlon -108 -maxlon -94
+```
+
+In this example, the convert.py script is being told to look for NAM data, assign a process ID of 250 to the output files, limit the output to a domain between 27 and 40 degrees N, and 108 to 94 degrees W, and to shift the valid dates and times ahead by 365 days.
+
+Once this script finishes running (this will take some time...these files are pretty big!), two new files are present in the **/Volumes/External2TB/data** directory:
+
+```
+LDAD-GRIB-nam-2018050100.grb2
+LDAD-GRIB-nam-2018050200.grb2
+```
+
+These files can now be loaded into AWIPS.
+
+### Loading data into AWIPS2
+
 
 

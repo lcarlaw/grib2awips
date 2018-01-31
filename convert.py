@@ -109,15 +109,15 @@ for f in file_list:
         limit = '-small_grib ' + results.min_lon + ':' + results.max_lon + \
                 ' ' + results.min_lat + ':' + results.max_lat
     else:
-        limit = ''
+        limit = '-GRIB '
        
     # Grab the model run date from the file name. NCEI archives data in the
     # form: MMM_GRID_YYYYMMDDHH.XX.tar where MMM is the model name, GRID is
     # the grid number, and XX is g2 (for grib2) or nothing (for grib1). All
     # we need is to find the last occurrence of the '_' character and search
     # for the next 8 characters.
-    idx = f.rfind('_')
-    date_string = f[idx+1:idx+11]
+    idx = f.rfind(results.model_name + '_')
+    date_string = f[idx+8:idx+18]
     
     # Add the specified time delta to the model run 
     epoch = timelib.date2epoch(date_string)
@@ -135,5 +135,6 @@ for f in file_list:
           str(results.process_id) + ' ' + limit + ' ' + \
           results.path + '/' + 'LDAD-GRIB-' + results.model_name + '-' +  \
           new_date + '.grb2'
+    
     os.system(arg)
 
