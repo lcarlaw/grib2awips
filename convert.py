@@ -14,14 +14,14 @@
 # thinking this is real data. This will loop through all files in the specified
 # directory of the same model type. 
 #
-# To see documentation on command-line arguments, type: ./convert.py --help
+# To see documentation on command-line arguments, type: python convert.py --help
 # 
 # An example to convert nam data is shown below:
 # 
-# ./convert.py -m nam -pid 250 -path Documents/FWD/data -shifttime 2503 
+# python convert.py -m nam -pid 250 -path Documents/FWD/data -shifttime 2503 
 # -d -minlat 27 -maxlat 40 -minlon -108 -maxlon -94
 #
-# Requires wgrib2 to be accessible from the command-line.
+# Requires wgrib2 to be accessible from the command-line. 
 #
 ###############################################################################
 
@@ -49,10 +49,10 @@ parser.add_argument('-maxlat', action='store', dest='max_lat',
                     help='Maximum latitude in degrees N')
 
 parser.add_argument('-minlon', action='store', dest='min_lon', 
-                    help='Minimum longitude in degrees E')
+                    help='Minimum longitude in degrees E (- for W)')
 
 parser.add_argument('-maxlon', action='store', dest='max_lon', 
-                    help='Maximum longitude in degrees E')
+                    help='Maximum longitude in degrees E (- for W)')
 
 parser.add_argument('-pid', action='store', dest='process_id',
                     help='Set the processid. Good values are 240-255')
@@ -70,7 +70,7 @@ if results.path == None:
 
 # Supported models. Sorry, no ECMWF. 
 if results.model_name not in ['rap', 'ruc2', 'nam', 'gfs']:
-    print 'Bad, or no model name. What are you doing JJ?'
+    print 'Bad, or no model name.'
     sys.exit()
 
 # Control the processid here

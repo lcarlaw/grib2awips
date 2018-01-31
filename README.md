@@ -14,6 +14,35 @@ You'll need a few things installed before running the convert.py script:
 * [wgrib2](http://www.cpc.ncep.noaa.gov/products/wesley/wgrib2/) - You can download the latest .tar file [here](http://www.ftp.cpc.ncep.noaa.gov/wd51we/wgrib2/)
 * Python2.7 - This code was developed on a machine with Python2.7 installed via [Anaconda](https://anaconda.org/anaconda/python)
 
-## Authors
-* **Lee Carlaw** - *WFO FWD*
- 
+## Useage
+
+We'll run through an example on how to use the scripts here:
+
+### Data 
+
+We've downloaded several archived NAM model runs from the NCEI website. Typing the following:
+
+```
+cd /Volumes/External2TB/data/
+ls -ltr
+```
+
+results in this output:
+
+```
+nam_218_2011022200.g2.tar
+nam_218_2011022300.g2.tar
+nam_218_2011022400.g2.tar
+nam_218_2011022500.g2.tar
+nam_218_2011022600.g2.tar
+```
+
+This is GRIB2 data (the **g2** extension before .tar), so we can decode these files. Note that GRIB1 files are not supported at this time. Don't rename any files as the converting script looks for a specific naming convention. 
+
+Archived NAM files actually contain hourly forecast output through 36 hours, which is too bulky for any uses we have here. The **reduce_nam.py** script will delete the hourly data and re-package the file with 3-hourly forecast output. If we type:
+
+```
+python reduce_nam.py /Volumes/External2TB/data
+```
+
+
