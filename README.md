@@ -126,6 +126,30 @@ Add additional <vbSource.../> lines for each additional model/processID you have
 
 7. Once you're happy with the results, copy the file to SITE so everyone has access. 
 
+### Clearing the model data inventory
 
+As you import newer model runs, AWIPS will automatically update the available model inventory, eventually overwriting older model runs. Should you need to start over and clear the inventory out, or see older model data, follow these steps. This will require AWIPS user privileges. 
+
+1. In a terminal window, type (carefully!):
+
+```
+psql metadata
+delete from grid where info_id in (select id from grid_info where datasetid = ‘GribModel:7:0:250’) and reftime < ‘2018-02-01’;
+```
+
+This will purge the inventory for our model data before the specified reference time. 
+2. Next, we'll need to delete the HDF5 files. Type:
+
+```
+ssh dx2
+cd /awips2/edex/data/hdf5/grid
+ls -ltr
+```
+
+You should see **GribModel:7:0:250**. Remove this directory and everything within it (carefully!):
+
+```
+rm -rf GribModel:7:0:250
+```
 
 
