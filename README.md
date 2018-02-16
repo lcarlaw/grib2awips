@@ -56,7 +56,7 @@ the extraneous data will be removed from the data files.
 
 ### Conversion Process
 
-Running the converion script is fairly straightforward, but requires a few command-line inputs:
+Running the conversion script is fairly straightforward, but requires a few command-line inputs:
 
 ```
 python convert.py -m nam -pid 250 -path /Volumes/External2TB/data -shifttime 365 -d -minlat 27 -maxlat 40 -minlon -108 -maxlon -94
