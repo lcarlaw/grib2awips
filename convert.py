@@ -109,7 +109,13 @@ for f in file_list:
         limit = '-small_grib ' + results.min_lon + ':' + results.max_lon + \
                 ' ' + results.min_lat + ':' + results.max_lat
     else:
-        limit = '-GRIB '
+        # Originally set to -GRIB, but this option only decodes the first
+        # message in a submessage set. This normally isn't a problem,
+        # but NCEP stores u- and v-wind components as submessages (.1 and .2)
+        # and -GRIB skips over the .2 message. Causes issues with AWIPS 
+        # inventory. Leave as -grib to decode all message, or use the limited
+        # domain option above. 
+        limit = '-grib '
        
     # Grab the model run date from the file name. NCEI archives data in the
     # form: MMM_GRID_YYYYMMDDHH.XX.tar where MMM is the model name, GRID is
