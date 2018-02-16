@@ -8,6 +8,16 @@ All GRIB2 files begin with metadata describing many things, among which include 
 
 The documentation recommends starting with a processID of 240 and working upwards to 255, which are currently "Reserved" or "Missing" products. However, it's possible that your local office utilizes local model data, or some other product with these processIDs, so it's important to check with your ITO, or someone knowledgeable about the AWIPS system to avoid potentially overwriting or corrupting real-world data. 
 
+Once your data has been decoded and output, (it will be called something like LDAD-GRIB-foobar.grb2), you may want to run a command something like:
+
+```
+wgrib2 LDAD-GRIB-foobar.grb2 -processid > output.txt
+```
+
+Read the output.txt file to ensure that all of the parameters in the GRIB file show a **forecast generating process** number equal to the pid you set during the conversion.  
+
+Finally, it's probably also a good idea to monitor real-world some of the NAM/GFS/RAP data coming into AWIPS to ensure there are no inventory hiccups. The AWIPS system should keep your archived data separate from the operational data flow with the altered processid if all has gone well, however. 
+
 ## Prerequisites
 
 You'll need a few things installed before running the convert.py script:

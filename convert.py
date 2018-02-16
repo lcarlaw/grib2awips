@@ -15,13 +15,19 @@
 # directory of the same model type. 
 #
 # To see documentation on command-line arguments, type: python convert.py --help
+#
+# Also, please read the README.md file for important useage information and 
+# precautions to take since we will be importing this data in the operational
+# data stream of AWIPS2. 
 # 
 # An example to convert nam data is shown below:
 # 
 # python convert.py -m nam -pid 250 -path Documents/FWD/data -shifttime 2503 
 # -d -minlat 27 -maxlat 40 -minlon -108 -maxlon -94
 #
-# Requires wgrib2 to be accessible from the command-line. 
+# Finally, if wgrib2 has any special $PATH associated with it, you'll need to 
+# add that to the beginning of line 144 to point the script to the proper binary
+# file. 
 #
 ###############################################################################
 
@@ -135,7 +141,6 @@ for f in file_list:
     day = new_date[6:8]
     hour = new_date[8:10]
     
-    #arg = 'cdo -settaxis,'+year+'-'+month+'-'+day+','+hour + ':00,3hour' 
     arg = 'wgrib2 ' + f + ' -set_date ' + new_date + '00  -set '+ \
           'center 7 -set subcenter 0 -set analysis_or_forecast_process_id ' + \
           str(results.process_id) + ' ' + limit + ' ' + \
