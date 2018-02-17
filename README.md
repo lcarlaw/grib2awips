@@ -151,7 +151,8 @@ psql metadata
 delete from grid where info_id in (select id from grid_info where datasetid = ‘GribModel:7:0:250’) and reftime < ‘2018-02-01’;
 ```
 
-This will purge the inventory for our model data before the specified reference time. 
+This will purge the inventory for our model data before the specified reference time.
+ 
 2. Next, we'll need to delete the HDF5 files. Type:
 
 ```
